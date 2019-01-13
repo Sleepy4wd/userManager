@@ -12,10 +12,15 @@ import './assets/base.css'
 
 //导入自己写的axios插件
 import vueAxios from './lib/vue-axios'
-Vue.use(vueAxios)
+Vue.use(vueAxios);
+
+//导入自己抽取的路由
+import router from './lib/router'
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  //把vue-router挂载到Vue实例上
+  router
 }).$mount('#app')
