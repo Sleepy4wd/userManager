@@ -19,7 +19,10 @@
           label="活动区域"
           prop="password"
         >
-          <el-input type="password" v-model="formData.password"></el-input>
+          <el-input
+            type="password"
+            v-model="formData.password"
+          ></el-input>
         </el-form-item>
       </el-form>
       <el-button
@@ -64,9 +67,19 @@ export default {
     submitForm(formData) {
       this.$refs[formData].validate(valid => {
         if (valid) {
-          alert("submit!");
+          this.$axios.post("login", this.formData).then(res => {
+            console.log(res);
+            if (res.data.meta.status === 400) {
+              this.$message.error(res.data.meta.msg);
+            } else if (res.data.meta.status === 200) {
+              this.$message({
+                message: res.data.meta.msg,
+                type: "success"
+              });
+            }
+          });
         } else {
-          console.log("error submit!!");
+          this.$message.error("请输入用户名和密码");
           return false;
         }
       });

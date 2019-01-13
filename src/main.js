@@ -10,6 +10,10 @@ Vue.use(ElementUI);
 //导入base.css
 import './assets/base.css'
 
+//导入自己写的axios插件
+import vueAxios from './lib/vue-axios'
+Vue.use(vueAxios)
+
 Vue.config.productionTip = false
 
 new Vue({
