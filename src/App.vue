@@ -6,18 +6,27 @@
         label-position="top"
         label-width="80px"
         :model="formData"
+        :rules="rules"
+        ref="formData"
       >
-        <el-form-item label="名称">
-          <el-input v-model="formData.name"></el-input>
+        <el-form-item
+          label="名称"
+          prop="username"
+        >
+          <el-input v-model="formData.username"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域">
-          <el-input v-model="formData.password"></el-input>
+        <el-form-item
+          label="活动区域"
+          prop="password"
+        >
+          <el-input type="password" v-model="formData.password"></el-input>
         </el-form-item>
       </el-form>
       <el-button
         class="login-btn"
         type="success"
-      >成功按钮</el-button>
+        @click="submitForm('formData')"
+      >登录</el-button>
     </div>
   </div>
 </template>
@@ -31,10 +40,37 @@ export default {
   data: function() {
     return {
       formData: {
-        name: "",
+        username: "",
         password: ""
+      },
+      rules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "change" },
+          {
+            min: 3,
+            max: 10,
+            message: "长度在 3 到 10 个字符",
+            trigger: "change"
+          }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "change" },
+          { min: 3, message: "密码强度不够", trigger: "change" }
+        ]
       }
     };
+  },
+  methods: {
+    submitForm(formData) {
+      this.$refs[formData].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    }
   }
 };
 </script>
