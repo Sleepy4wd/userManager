@@ -30,31 +30,23 @@
         <el-menu
           default-active="3"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
+          router
         >
-          <el-submenu index="1">
+          <el-submenu v-for="(item, index) in menuList" :key="item.id" :index="item.order+''">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>用户管理</span>
+              <span>{{item.authName}}</span>
             </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1">
+              <el-menu-item v-for="(it, i) in item.children" :key="it.id" :index="'/'+it.path">
                 <i class="el-icon-menu"></i>
-                <span slot="title">用户列表</span>
+                {{it.authName}}
               </el-menu-item>
-            </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-aside>
       <el-main>
-        <div class="content-title">
-          <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-            <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-          </el-breadcrumb>
-        </div>
+        <!-- 出口 -->
+        <!-- <router-view></router-view> -->
       </el-main>
     </el-container>
   </el-container>
@@ -72,6 +64,19 @@ export default {
   //     this.$router.push("login");
   //   }
   // },
+  data() {
+    return {
+      menuList:[],
+    }
+  },
+  created() {
+    this.$axios
+      .get("menus")
+      .then(res => {
+        // console.log(res);
+        this.menuList = res.data.data;
+      });
+  },
   methods: {
     loginout() {
       this.$confirm("此操作将退出, 是否继续?", "提示", {
@@ -94,12 +99,6 @@ export default {
           });
         });
     },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
   }
 };
 </script>
