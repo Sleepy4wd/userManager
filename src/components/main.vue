@@ -45,66 +45,6 @@
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>权限管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="2-1">
-                <i class="el-icon-menu"></i>
-                <span slot="title">角色列表</span>
-              </el-menu-item>
-              <el-menu-item index="2-2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">权限列表</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>商品管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="3-1">
-                <i class="el-icon-menu"></i>
-                <span slot="title">商品列表</span>
-              </el-menu-item>
-              <el-menu-item index="3-2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">分类参数</span>
-              </el-menu-item>
-              <el-menu-item index="3-3">
-                <i class="el-icon-menu"></i>
-                <span slot="title">商品分类</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="4">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>订单管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="4-1">
-                <i class="el-icon-menu"></i>
-                <span slot="title">订单列表</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="5">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>数据统计</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="5-1">
-                <i class="el-icon-menu"></i>
-                <span slot="title">数据报表</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
         </el-menu>
       </el-aside>
       <el-main>
@@ -134,8 +74,25 @@ export default {
   // },
   methods: {
     loginout() {
-      window.sessionStorage.removeItem("token");
-      this.$router.push("login");
+      this.$confirm("此操作将退出, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          window.sessionStorage.removeItem("token");
+          this.$router.push("login");
+          this.$message({
+            type: "success",
+            message: "退出成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "再看看"
+          });
+        });
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -173,8 +130,10 @@ export default {
       color: #333;
       text-align: center;
       line-height: 200px;
+      .el-submenu__title {
+        text-align: left;
+      }
     }
-
     .el-main {
       background-color: #e9eef3;
       color: #333;
