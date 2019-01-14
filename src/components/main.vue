@@ -1,6 +1,6 @@
 <template>
-  <div class="main-container">
-    <div class="main-title">
+  <el-container class="main-container">
+    <el-header>
       <el-row>
         <el-col :span="8">
           <div class="title-left">
@@ -24,107 +24,100 @@
           </div>
         </el-col>
       </el-row>
-    </div>
-    <div class="main-content">
-      <el-row>
-        <el-col
-          :span="3"
-          class="content-left"
+    </el-header>
+    <el-container class="main-content">
+      <el-aside width="200px">
+        <el-menu
+          default-active="3"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
         >
-          <el-menu
-            default-active="3"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-          >
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>用户管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">用户列表</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="2">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>权限管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="2-1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">角色列表</span>
-                </el-menu-item>
-                <el-menu-item index="2-2">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">权限列表</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="3">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>商品管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="3-1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">商品列表</span>
-                </el-menu-item>
-                <el-menu-item index="3-2">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">分类参数</span>
-                </el-menu-item>
-                <el-menu-item index="3-3">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">商品分类</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="4">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>订单管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="4-1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">订单列表</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="5">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>数据统计</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="5-1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">数据报表</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-          </el-menu>
-        </el-col>
-        <el-col :span="18">
-          <div class="content-right">
-            <div class="conRgtTitle">
-              <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-                <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-              </el-breadcrumb>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-  </div>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="1-1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">用户列表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>权限管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="2-1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">角色列表</span>
+              </el-menu-item>
+              <el-menu-item index="2-2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">权限列表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>商品管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="3-1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">商品列表</span>
+              </el-menu-item>
+              <el-menu-item index="3-2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">分类参数</span>
+              </el-menu-item>
+              <el-menu-item index="3-3">
+                <i class="el-icon-menu"></i>
+                <span slot="title">商品分类</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>订单管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="4-1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">订单列表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="5">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>数据统计</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="5-1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">数据报表</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <div class="content-title">
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+            <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 <script>
 export default {
@@ -156,9 +149,9 @@ export default {
 <style lang="scss">
 .main-container {
   height: 100%;
-  .main-title {
+  .el-header {
+    background-color: #b3c0d1;
     height: 60px;
-    background-color: burlywood;
     .title-left {
       padding-left: 10px;
     }
@@ -175,23 +168,18 @@ export default {
     }
   }
   .main-content {
-    position: relative;
-    .content-left {
-      position: absolute;
-      left: 0;
-      .el-submenu .el-menu-item {
-        min-width: 0;
-      }
+    .el-aside {
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      line-height: 200px;
     }
-    .content-right {
-      position: absolute;
-      left: 200px;
-      width: 100%;
-      .conRgtTitle {
-          height: 40px;
-          width: 100%;
-          background-color: blueviolet;
-      }
+
+    .el-main {
+      background-color: #e9eef3;
+      color: #333;
+      text-align: center;
+      line-height: 160px;
     }
   }
 }
