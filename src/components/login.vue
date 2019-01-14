@@ -78,7 +78,7 @@ export default {
               // });
               // this.$message.success(res.data.meta.msg);
               window.sessionStorage.setItem('token',res.data.data.token);
-              this.$router.push('main')
+              this.$router.push('/')
             }
           });
         } else {

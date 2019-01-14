@@ -46,7 +46,7 @@
       </el-aside>
       <el-main>
         <!-- 出口 -->
-        <!-- <router-view></router-view> -->
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -136,8 +136,6 @@ export default {
     .el-main {
       background-color: #e9eef3;
       color: #333;
-      text-align: center;
-      line-height: 160px;
     }
   }
 }

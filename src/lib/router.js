@@ -11,14 +11,22 @@ import login from '../components/login.vue';
 
 import main from '../components/main.vue';
 
+import user from '../components/user.vue'
+
 //写路由规则
 const routes = [{
         path: '/login',
         component: login
     },
     {
-        path: '/main',
-        component: main
+        path: '/',
+        component: main,
+        children:[
+            {
+                path:'users',
+                component:user
+            }
+        ]
     }
 ];
 
@@ -27,6 +35,7 @@ const router = new vueRouter({
     routes
 })
 
+//导航守卫
 router.beforeEach((to, from, next) => {
     next();
     if (to.path === '/login') {
